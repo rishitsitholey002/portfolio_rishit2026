@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rishit Sitholey — Analytics Engineer</title>
+<meta name="description" content="Rishit Sitholey, Analytics Engineer. ETL/ELT pipelines, Snowflake data warehousing, dimensional modeling, and Power BI — from raw source data to decisions.">
+<meta property="og:title" content="Rishit Sitholey — Analytics Engineer">
+<meta property="og:description" content="ETL/ELT pipelines · Snowflake · Star schemas · Power BI. The pipeline between data and decisions.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#05060a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== LOADER ===== -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-mark">RS</div>
+  <div class="loader-bar"><i id="loaderBar"></i></div>
+  <div class="loader-sub">initializing warehouse…</div>
+</div>
+
+<!-- ===== CURSOR + SPOTLIGHT ===== -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+<div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+<!-- ===== SCROLL PROGRESS ===== -->
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="#home"><span class="nav-mark">RS</span> rishit<span class="thin">.sitholey</span></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+      <svg class="ic-moon" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="ic-sun" width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <button class="cmdk-btn" id="openPalette">⌘K</button>
+  </div>
+</nav>
+
+<!-- ===== SECTION DOTS ===== -->
+<div class="dots" id="sectionDots" aria-hidden="true"></div>
+
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-tag reveal-line"><span class="pulse"></span>Analytics Engineer · open to product-company roles</div>
+      <h1 class="hero-h1">
+        <span class="hl-line"><span class="hl-word">The</span> <span class="hl-word">pipeline</span> <span class="hl-word">between</span></span>
+        <span class="hl-line grad"><span class="hl-word">data</span> <span class="hl-word">and</span> <span class="hl-word">decisions.</span></span>
+      </h1>
+      <p class="hero-sub reveal-line">I'm <b>Rishit Sitholey</b>. I design ETL/ELT pipelines, Snowflake warehouses, and the dimensional models behind Power BI dashboards that leadership actually trusts.</p>
+      <div class="hero-cta reveal-line">
+        <a class="btn btn-orange magnetic" href="#projects">View case studies</a>
+        <a class="btn btn-glass magnetic" href="assets/Rishit_Sitholey_Resume.pdf" download>↓ Download résumé</a>
+      </div>
+      <div class="hero-meta reveal-line">
+        <span>SQL</span><i></i><span>Python</span><i></i><span>Snowflake</span><i></i><span>Power BI</span><i></i><span>AWS S3</span>
+      </div>
+    </div>
+
+    <div class="hero-stage" aria-hidden="true">
+      <div class="stage-inner" id="stage">
+        <!-- rotating SQL cube -->
+        <div class="cube-wrap layer" data-depth="26">
+          <div class="cube">
+            <div class="face f1">SELECT</div>
+            <div class="face f2">MERGE</div>
+            <div class="face f3">JOIN</div>
+            <div class="face f4">WHERE</div>
+            <div class="face f5">GROUP</div>
+            <div class="face f6">ORDER</div>
+          </div>
+        </div>
+        <!-- floating glass cards -->
+        <div class="gcard gc1 layer" data-depth="14">
+          <div class="gc-hd"><span class="gdot ok"></span>pipeline_run</div>
+          <div class="gc-row"><span>rows</span><b id="gcRows">128,431</b></div>
+          <div class="gc-row"><span>status</span><b class="ok-t">SUCCESS</b></div>
+          <div class="gc-bar"><i></i></div>
+        </div>
+        <div class="gcard gc2 layer" data-depth="34">
+          <div class="gc-hd"><span class="gdot cy"></span>snowflake · star schema</div>
+          <div class="gc-schema">
+            <span class="fact">fct_sales</span>
+            <span class="dim d1">dim_date</span>
+            <span class="dim d2">dim_product</span>
+            <span class="dim d3">dim_customer</span>
+            <span class="dim d4">dim_channel</span>
+            <svg viewBox="0 0 200 120"><path d="M100 60 L30 22M100 60 L170 22M100 60 L30 100M100 60 L170 100" stroke="currentColor" stroke-width="1"/></svg>
+          </div>
+        </div>
+        <div class="gcard gc3 layer" data-depth="20">
+          <div class="gc-hd"><span class="gdot pu"></span>revenue_yoy</div>
+          <div class="gc-num">+15%</div>
+          <div class="gc-spark"><i style="--h:34%"></i><i style="--h:52%"></i><i style="--h:44%"></i><i style="--h:66%"></i><i style="--h:58%"></i><i style="--h:80%"></i><i style="--h:96%"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#about" aria-label="Scroll to about"><span></span></a>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="sec" id="about">
+  <div class="sec-head">
+    <span class="kicker">01 · About</span>
+    <h2 class="sec-title">A product profile,<br><span class="grad-t">not a bio.</span></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-portrait tilt">
+      <img src="assets/rishit.jpg" alt="Portrait of Rishit Sitholey" width="420" height="420" loading="lazy">
+      <div class="portrait-chip glass">Lucknow, India · IST</div>
+    </div>
+    <div class="about-body">
+      <p class="about-lede">Two years ago I started as a data analyst cleaning lead lists. Today I own the full path at Appex Multisol — from raw S3 drops and operational databases, through Snowflake staging and star-schema modeling, to the Power BI dashboards teams open every Monday morning.</p>
+      <p class="about-p">The through-line: I treat data like a product. Declared grains, validated loads, documented models, metrics defined once. If a number reaches a stakeholder, I can trace exactly where it came from.</p>
+      <div class="stats">
+        <div class="stat glass tilt"><div class="stat-n" data-count="2" data-suffix="+">0</div><div class="stat-l">years in data</div></div>
+        <div class="stat glass tilt"><div class="stat-n" data-count="2.2" data-suffix="M+" data-dec="1">0</div><div class="stat-l">records · largest dataset</div></div>
+        <div class="stat glass tilt"><div class="stat-n" data-count="20" data-suffix="+">0</div><div class="stat-l">dashboards shipped</div></div>
+        <div class="stat glass tilt"><div class="stat-n" data-count="25" data-prefix="15–">0</div><div class="stat-l">source tables per load</div></div>
+      </div>
+      <div class="facts">
+        <span class="fact-chip glass">B.Tech ECE · ABES Engineering College</span>
+        <span class="fact-chip glass">Analyst → Analytics Engineer · promoted Jan 2026</span>
+        <span class="fact-chip glass">Learning: Databricks · PySpark · Tableau</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section class="sec" id="experience">
+  <div class="sec-head">
+    <span class="kicker">02 · Experience</span>
+    <h2 class="sec-title">Milestones,<br><span class="grad-t">in sequence.</span></h2>
+  </div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-node"><span class="t-mono">AM</span></div>
+      <div class="t-card glass tilt">
+        <div class="t-top"><h3>Analytics Engineer</h3><span class="t-when">Jan 2026 — Present</span></div>
+        <div class="t-org">Appex Multisol Pvt Ltd · Lucknow <span class="t-live">● current</span></div>
+        <ul>
+          <li>Built ETL/ELT pipelines in SQL and Python loading 15–25 source tables into a Snowflake data warehouse for analytics-ready reporting.</li>
+          <li>Designed star-schema dimensional models in Snowflake powering 5–8 Power BI dashboards, improving how teams access core metrics.</li>
+          <li>Ran scheduled and on-demand jobs processing 100K–500K records, with validation checks and monitoring to catch quality issues before dashboards.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-node"><span class="t-mono">AM</span></div>
+      <div class="t-card glass tilt">
+        <div class="t-top"><h3>Data Analyst</h3><span class="t-when">Jan 2025 — Dec 2025</span></div>
+        <div class="t-org">Appex Multisol Pvt Ltd · Lucknow</div>
+        <ul>
+          <li>Processed datasets of 100K+ records, structuring staging and warehouse tables for reliable, repeatable reporting.</li>
+          <li>Extracted and loaded data from multiple sources including AWS S3, transforming it into fact and dimension tables.</li>
+          <li>Partnered with stakeholders to translate reporting requirements into the datasets and models that answer them.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-node"><span class="t-mono">BJ</span></div>
+      <div class="t-card glass tilt">
+        <div class="t-top"><h3>Data Analyst</h3><span class="t-when">Jun 2024 — Dec 2024</span></div>
+        <div class="t-org">Bravoji.com · Remote</div>
+        <ul>
+          <li>Built 10+ Power BI dashboards (DAX) tracking KPIs, ROI, and campaigns — contributing to a reported 15% revenue increase.</li>
+          <li>Analyzed sales data across 50+ TikTok e-commerce stores to surface trends in revenue, product performance, and campaigns.</li>
+          <li>Cleaned and transformed 50,000+ leads using Power Query to make the data reliable enough for analysis.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-node"><span class="t-mono">PS</span></div>
+      <div class="t-card glass tilt">
+        <div class="t-top"><h3>Application Support Intern</h3><span class="t-when">Apr 2024 — May 2024</span></div>
+        <div class="t-org">PeopleStrong · Gurugram</div>
+        <ul>
+          <li>Managed and validated HCM platform data for 500+ employees, maintaining accuracy and system reliability.</li>
+          <li>Resolved 200+ data-related issues by tracing root causes and applying structured fixes.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section class="sec" id="projects">
+  <div class="sec-head">
+    <span class="kicker">03 · Projects</span>
+    <h2 class="sec-title">Case studies,<br><span class="grad-t">not screenshots.</span></h2>
+  </div>
+
+  <article class="proj glass" data-open="false">
+    <button class="proj-head" aria-expanded="false">
+      <div class="proj-id">P·01</div>
+      <div class="proj-t">
+        <h3>End-to-End Data Pipeline — Snowflake & Dimensional Modeling</h3>
+        <p>Multi-source ELT into Snowflake · 100K+ records · star schema · validated loads</p>
+      </div>
+      <div class="proj-tags"><span>Snowflake</span><span>SQL</span><span>Python</span><span>S3</span></div>
+      <div class="proj-x" aria-hidden="true">+</div>
+    </button>
+    <div class="proj-body">
+      <div class="proj-grid">
+        <div>
+          <h4>The problem</h4>
+          <p>Analytical questions kept requiring fresh ad-hoc queries against raw, inconsistent extracts — slow to produce, impossible to reproduce. The fix wasn't a better query; it was a warehouse.</p>
+          <h4>The build</h4>
+          <p>Raw data lands untouched, loads into typed staging via <code>COPY INTO</code>, transforms once inside Snowflake — window-function dedupe, conformed types, <code>MERGE</code>-based incremental upserts — and publishes a documented star schema (1 fact + dimensions) as the single interface for analytics.</p>
+          <div class="metric-row">
+            <div class="metric"><b data-count="100" data-suffix="K+">0</b><span>records loaded</span></div>
+            <div class="metric"><b>1+N</b><span>fact + dims</span></div>
+            <div class="metric"><b>4</b><span>warehouse layers</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="code glass"><div class="code-hd">transform/dedupe.sql</div><pre><span class="k">WITH</span> ranked <span class="k">AS</span> (
+  <span class="k">SELECT</span> s.*,
+    <span class="f">ROW_NUMBER</span>() <span class="k">OVER</span> (
+      <span class="k">PARTITION BY</span> order_id
+      <span class="k">ORDER BY</span> updated_at <span class="k">DESC</span>) rn
+  <span class="k">FROM</span> stg_orders s)
+<span class="k">SELECT</span> * <span class="k">FROM</span> ranked <span class="k">WHERE</span> rn = 1;</pre></div>
+          <div class="arch-mini" aria-hidden="true">
+            <span>S3 / MySQL</span><i>→</i><span>Python</span><i>→</i><span>Stage</span><i>→</i><span>Star schema</span><i>→</i><span class="hot">Power BI</span>
+          </div>
+        </div>
+      </div>
+      <div class="impact-line"><b>Impact:</b> repeatable answers (same question, same number, any day), self-serve analytics off a documented model, and validation gates that stop bad data in staging — dashboards only refresh from clean tables.</div>
+    </div>
+  </article>
+
+  <article class="proj glass" data-open="false">
+    <button class="proj-head" aria-expanded="false">
+      <div class="proj-id">P·02</div>
+      <div class="proj-t">
+        <h3>Business 360 — Analytics Dashboard Suite</h3>
+        <p>2.2M+ MySQL records · 10+ connected Power BI dashboards · one semantic layer</p>
+      </div>
+      <div class="proj-tags"><span>Power BI</span><span>DAX</span><span>MySQL</span></div>
+      <div class="proj-x" aria-hidden="true">+</div>
+    </button>
+    <div class="proj-body">
+      <div class="proj-grid">
+        <div>
+          <h4>The problem</h4>
+          <p>Finance, sales, marketing, and supply chain looked at the same transactions through different spreadsheets — and reached different numbers.</p>
+          <h4>The build</h4>
+          <p>2.2M+ records shaped into a dimensional model, imported into Power BI, and every KPI defined once as a central DAX measure. Ten-plus dashboard pages share the model — drill-through connects executive summary to transaction line.</p>
+          <div class="ba glass">
+            <div class="ba-col"><span class="ba-lab">Before</span><p>Four teams · four spreadsheets · four versions of "revenue"</p></div>
+            <div class="ba-arrow">→</div>
+            <div class="ba-col"><span class="ba-lab after">After</span><p>One model · one measure library · one version of the truth</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="code glass"><div class="code-hd">model/measures.dax</div><pre>Total Revenue = <span class="f">SUM</span>(fct_sales[revenue])
+
+Revenue YoY % =
+  <span class="f">DIVIDE</span>([Total Revenue] - [Revenue LY],
+         [Revenue LY])
+
+Revenue YTD =
+  <span class="f">TOTALYTD</span>([Total Revenue], dim_date[date])</pre></div>
+          <div class="metric-row">
+            <div class="metric"><b data-count="2.2" data-suffix="M+" data-dec="1">0</b><span>records</span></div>
+            <div class="metric"><b data-count="10" data-suffix="+">0</b><span>dashboards</span></div>
+            <div class="metric"><b>4</b><span>domains</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="impact-line"><b>Impact:</b> when finance asks why their number differs from sales — it can't. Both pages call the same measure.</div>
+    </div>
+  </article>
+
+  <article class="proj glass" data-open="false">
+    <button class="proj-head" aria-expanded="false">
+      <div class="proj-id">P·03</div>
+      <div class="proj-t">
+        <h3>TikTok Commerce Analytics — Bravoji.com</h3>
+        <p>50+ e-commerce stores · 50K+ leads cleaned · 10+ dashboards · reported 15% revenue lift</p>
+      </div>
+      <div class="proj-tags"><span>Power BI</span><span>Power Query</span><span>DAX</span></div>
+      <div class="proj-x" aria-hidden="true">+</div>
+    </button>
+    <div class="proj-body">
+      <div class="proj-grid">
+        <div>
+          <h4>The problem</h4>
+          <p>Campaign spend across 50+ TikTok stores was steered by gut feel — no unified view of which products, stores, or creatives actually earned budget.</p>
+          <h4>The build</h4>
+          <p>50,000+ leads cleaned and standardized with Power Query, then 10+ DAX-driven dashboards tracking KPIs, ROI, and campaign trends across every store — the reporting the team used to rank spend decisions.</p>
+        </div>
+        <div>
+          <div class="metric-row tall">
+            <div class="metric"><b data-count="50" data-suffix="+">0</b><span>stores analyzed</span></div>
+            <div class="metric"><b data-count="50" data-suffix="K+">0</b><span>leads cleaned</span></div>
+            <div class="metric"><b data-count="15" data-suffix="%">0</b><span>reported revenue lift</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="impact-line"><b>Impact:</b> gut-feel budget calls became ranked, evidenced ones — the same cleaning → modeling → metrics pattern I've reused ever since.</div>
+    </div>
+  </article>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section class="sec" id="skills">
+  <div class="sec-head">
+    <span class="kicker">04 · Skills</span>
+    <h2 class="sec-title">A constellation,<br><span class="grad-t">not a list.</span></h2>
+  </div>
+  <div class="orbit-wrap glass">
+    <canvas id="orbit"></canvas>
+    <div class="orbit-tip glass" id="orbitTip" hidden></div>
+    <div class="orbit-hint">hover a node · outer dashed ring = currently learning</div>
+  </div>
+  <noscript>
+    <p>Core: SQL, Python, Snowflake, Power BI (DAX), ETL/ELT, star schema · Cloud & DB: AWS S3, MySQL, PostgreSQL · Learning: Databricks, PySpark, Tableau</p>
+  </noscript>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="sec" id="contact">
+  <div class="sec-head">
+    <span class="kicker">05 · Contact</span>
+    <h2 class="sec-title">Open a channel.<br><span class="grad-t">I reply fast.</span></h2>
+  </div>
+  <div class="term glass">
+    <div class="term-hd"><span class="tdots"><i></i><i></i><i></i></span><span>rishit@contact: ~</span></div>
+    <div class="term-body">
+      <div class="term-lines" id="termLines"></div>
+      <form class="term-form" id="contactForm" autocomplete="off">
+        <label><span class="pr">name&gt;</span><input type="text" id="cfName" required placeholder="your name"></label>
+        <label><span class="pr">email&gt;</span><input type="email" id="cfEmail" required placeholder="you@company.com"></label>
+        <label><span class="pr">msg&gt;</span><textarea id="cfMsg" rows="3" required placeholder="role, team, or just say hi"></textarea></label>
+        <div class="term-send">
+          <button type="submit" class="btn btn-orange magnetic">Transmit ↵</button>
+          <span class="term-ok" id="termOk" hidden>✓ channel open — your mail app has the drafted message</span>
+        </div>
+      </form>
+      <div class="term-alt">or directly: <a href="mailto:rishitsitholey002@gmail.com">rishitsitholey002@gmail.com</a> · <a href="https://linkedin.com/in/rishitsitholey" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/rishitsitholey002" target="_blank" rel="noopener">GitHub</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <span>© 2026 Rishit Sitholey</span>
+  <span>Vanilla HTML · CSS · JS — no frameworks, no build step</span>
+  <button class="to-top magnetic" id="toTop" aria-label="Back to top">↑</button>
+</footer>
+
+<!-- ===== COMMAND PALETTE ===== -->
+<div class="palette-ov" id="paletteOv" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="palette glass">
+    <div class="palette-in"><span class="pr">›</span><input id="paletteInput" type="text" placeholder="Type a command… or SQL: SELECT * FROM projects" spellcheck="false"></div>
+    <div class="palette-list" id="paletteList"></div>
+    <div class="palette-ft">↑↓ navigate · ↵ run · esc close</div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
